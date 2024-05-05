@@ -1,0 +1,253 @@
+ ​​​T = readmatrix('dataset.csv')
+R = reshape(T.',size(T,2), 16, [])
+size(R)
+ P = permute(R,[2 1 3])
+size(P)
+ F = P(:,:,1:1622)
+szf = size(F);
+Ft = sum(sum(F,1),2)
+cy = sum((1:szf(1)).'.*sum(F,2))./Ft
+cx = sum((1:szf(2)).*sum(F,1))./Ft
+
+-------------------------------------------------------------------------
+
+   %H = F(:,:,1:27)
+   %S = size(H)
+%Ft = sum(sum(H,1),2)
+    %cx = sum((1:S(1)).'.*sum(H,2))./Ft 
+    %cy = sum((1:S(2)).*sum(H,1))./Ft
+%Hh = [H(:,:,1);H(:,:,2);H(:,:,3);H(:,:,4);H(:,:,5);H(:,:,6);H(:,:,7);H(:,:,8);H(:,:,9);H(:,:,10);H(:,:,11);H(:,:,12);H(:,:,13);H(:,:,14);H(:,:,15);H(:,:,16);H(:,:,17);H(:,:,18);H(:,:,19);H(:,:,20);H(:,:,21);H(:,:,22);H(:,:,23);H(:,:,24);H(:,:,25);H(:,:,26);H(:,:,27)]
+%Hh = [H(:,:,1) H(:,:,2) H(:,:,3) H(:,:,4) H(:,:,5) H(:,:,6) H(:,:,7) H(:,:,8) H(:,:,9) H(:,:,10) H(:,:,11) H(:,:,12) H(:,:,13) H(:,:,14) H(:,:,15) H(:,:,16) H(:,:,17) H(:,:,18) H(:,:,19) H(:,:,20) H(:,:,21) H(:,:,22) H(:,:,23) H(:,:,24) H(:,:,25) H(:,:,26) H(:,:,27)]
+
+for v=1 <= 1622
+    H11=[F(:,:,'%d',v)]
+    v = v + 1;
+    continue
+end
+
+-------------------------------------------------------------------------
+
+H1 = [F(:,:,1)+F(:,:,2)+F(:,:,3)+F(:,:,4)+F(:,:,5)+F(:,:,6)+F(:,:,7)+F(:,:,8)+F(:,:,9)+F(:,:,10)+F(:,:,11)+F(:,:,12)+F(:,:,13)+F(:,:,14)+F(:,:,15)+F(:,:,16)+F(:,:,17)+F(:,:,18)+F(:,:,19)+F(:,:,20)+F(:,:,21)+F(:,:,22)+F(:,:,23)+F(:,:,24)+F(:,:,25)+F(:,:,26)+F(:,:,27)];
+CY = [cy(:,:,1) cy(:,:,2) cy(:,:,3) cy(:,:,4) cy(:,:,5) cy(:,:,6) cy(:,:,7) cy(:,:,8) cy(:,:,9) cy(:,:,10) cy(:,:,11) cy(:,:,12) cy(:,:,13) cy(:,:,14) cy(:,:,15) cy(:,:,16) cy(:,:,17) cy(:,:,18) cy(:,:,19) cy(:,:,20) cy(:,:,21) cy(:,:,22) cy(:,:,23) cy(:,:,24) cy(:,:,25) cy(:,:,26) cy(:,:,27)];
+CX = [cx(:,:,1) cx(:,:,2) cx(:,:,3) cx(:,:,4) cx(:,:,5) cx(:,:,6) cx(:,:,7) cx(:,:,8) cx(:,:,9) cx(:,:,10) cx(:,:,11) cx(:,:,12) cx(:,:,13) cx(:,:,14) cx(:,:,15) cx(:,:,16) cx(:,:,17) cx(:,:,18) cx(:,:,19) cx(:,:,20) cx(:,:,21) cx(:,:,22) cx(:,:,23) cx(:,:,24) cx(:,:,25) cx(:,:,26) cx(:,:,27)];
+%Hhh = zeros(1600,1000)
+ imshow(Hh,[]); hold on
+plot(CX,CY,'*','markersize',10)
+title("The center of mass")
+hold off
+
+while n < 1622
+    n = n + 1;
+    if mod(n,27)
+      F_sum = F_sum + F(:,:,n)
+    CY = mean(cy_sum(n),'omitnan')
+    CX = mean(cx_sum(n),'omitnan')
+  
+        continue
+
+    disp(['Divisible by 27: ' num2cell(n)])
+    end
+
+for i = 1:1622
+F_sum=0
+F_sum= F_sum+ F(:,:,i)
+end
+imshow(F_sum,[]); hold on
+plot(CX_sum,CY_sum,'*','markersize',30)
+hold off
+end
+
+m1=1:1620;
+m2=[];
+sum=0;
+for i=1:1620
+    sum=sum+m1(i);
+    if rem(i,27)==0
+        m2=[m2 sum];
+        sum=0;
+    end
+end
+m4=[];
+for i=1:60
+    sum=sum+m2(i);
+    if rem(i,3)==0
+        m4=[m4 sum];
+        sum=0;
+    end
+end
+===========================================================================
+Center of mass at 20second
+F_sum1 = 0;
+for m = 1:540
+
+    F_sum1 = F_sum1 + F(:,:,m)
+    CY_sum1 = mean(cy_sum(1:540),'omitnan')
+    CX_sum1 = mean(cx_sum(1:540),'omitnan')
+   if rem(m,27)==0
+end
+    imshow(F_sum1,[]); hold on
+plot(CX_sum1,CY_sum1,'*','markersize',30)
+hold off
+F_sum2 = 0;
+for i = 540:1080
+
+    F_sum2 = F_sum2 + F(:,:,i)
+    CY_sum2 = mean(cy_sum(540:1080),'omitnan')
+    CX_sum2 = mean(cx_sum(540:1080),'omitnan')
+   if rem(m,27)==0
+ 
+end
+imshow(F_sum2,[]); hold on
+plot(CX_sum2,CY_sum2,'*','markersize',30)
+hold off
+F_sum3 = 0;
+for j = 1080:1620
+
+    F_sum3 = F_sum3 + F(:,:,j)
+    CY_sum3 = mean(cy_sum(1080:1620),'omitnan')
+    CX_sum3 = mean(cx_sum(1080:1620),'omitnan')
+   if rem(m,27)==0
+end
+imshow(F_sum3,[]); hold on
+plot(CX_sum3,CY_sum3,'*','markersize',30)
+
+
+hold off
+F_sum= F_sum1+F_sum2+F_sum3
+
+imshow(F_sum,[]); hold on
+plot(CX_sum1,CY_sum1,'*','markersize',30)
+plot(CX_sum2,CY_sum2,'*','markersize',30)
+plot(CX_sum3,CY_sum3,'*','markersize',30)
+plot(CX_sum,CY_sum,'*','markersize',30)
+hold off
+
+==================================================================
+Center of mass at 30second
+F_sum4 = 0;
+for n = 1:810
+
+    F_sum4 = F_sum4 + F(:,:,n)
+    CY_sum4 = mean(cy_sum(1:810),'omitnan')
+    CX_sum4 = mean(cx_sum(1:810),'omitnan')
+   % if rem(m,27)==0
+   
+end
+imshow(F_sum4,[]); hold on
+plot(CX_sum4,CY_sum4,'*','markersize',30)
+hold off
+F_sum5 = 0;
+for a = 810:1620
+
+    F_sum5 = F_sum5 + F(:,:,a)
+    CY_sum5 = mean(cy_sum(810:1620),'omitnan')
+    CX_sum5 = mean(cx_sum(810:1620),'omitnan')
+   % if rem(m,27)==0
+end
+imshow(F_sum5,[]); hold on
+plot(CX_sum5,CY_sum5,'*','markersize',30)
+
+F_sumA= F_sum4+F_sum5
+imshow(F_sumA,[]); hold on
+plot(CX_sum4,CY_sum4,'*','markersize',30)
+plot(CX_sum5,CY_sum5,'*','markersize',30)
+%plot(CX_sum4,CY_sum4,'*','markersize',30)
+% plot(CX_sum,CY_sum,'*','markersize',30)
+hold off
+==================================================================
+center of mass at 10 second
+F_sum6 = 0;
+for b = 1:270
+
+    F_sum6 = F_sum6 + F(:,:,b)
+    CY_sum6 = mean(cy_sum(1:270),'omitnan')
+    CX_sum6 = mean(cx_sum(1:270),'omitnan')
+   % if rem(m,27)==0
+   
+end
+imshow(F_sum6,[]); hold on
+plot(CX_sum6,CY_sum6,'*','markersize',30)
+hold off
+F_sum7 = 0;
+for c = 270:540
+
+    F_sum7 = F_sum7 + F(:,:,c)
+    CY_sum7 = mean(cy_sum(270:540),'omitnan')
+    CX_sum7 = mean(cx_sum(270:540),'omitnan')
+   % if rem(m,27)==0
+end
+imshow(F_sum7,[]); hold on
+plot(CX_sum7,CY_sum7,'*','markersize',30)
+
+F_sum8 = 0;
+for d = 540:810
+
+    F_sum8 = F_sum8 + F(:,:,d)
+    CY_sum8 = mean(cy_sum(540:810),'omitnan')
+    CX_sum8 = mean(cx_sum(540:810),'omitnan')
+   % if rem(m,27)==0
+   
+end
+imshow(F_sum8,[]); hold on
+plot(CX_sum8,CY_sum8,'*','markersize',30)
+hold off
+F_sum9 = 0;
+for E = 810:1080
+
+    F_sum9 = F_sum9 + F(:,:,E)
+    CY_sum9 = mean(cy_sum(810:1080),'omitnan')
+    CX_sum9 = mean(cx_sum(810:1080),'omitnan')
+   % if rem(m,27)==0
+end
+imshow(F_sum9,[]); hold on
+plot(CX_sum9,CY_sum9,'*','markersize',30)
+
+F_sum10 = 0;
+for  K= 1080:1350
+
+    F_sum10 = F_sum10 + F(:,:,K)
+    CY_sum10 = mean(cy_sum(1:810),'omitnan')
+    CX_sum10 = mean(cx_sum(1:810),'omitnan')
+   % if rem(m,27)==0
+   
+end
+imshow(F_sum10,[]); hold on
+plot(CX_sum10,CY_sum10,'*','markersize',30)
+hold off
+F_sum11 = 0;
+for H = 1350:1620
+
+    F_sum11 = F_sum11 + F(:,:,H)
+    CY_sum11 = mean(cy_sum(1350:1620),'omitnan')
+    CX_sum11 = mean(cx_sum(1350:1620),'omitnan')
+   % if rem(m,27)==0
+end
+imshow(F_sum11,[]); hold on
+plot(CX_sum11,CY_sum11,'*','markersize',30)
+
+F_sumB= F_sum6+F_sum7+F_sum8+F_sum9+F_sum10+F_sum11
+imshow(F_sumB,[]); hold on
+plot(CX_sum6,CY_sum6,'*','markersize',30)
+plot(CX_sum7,CY_sum7,'*','markersize',30)
+plot(CX_sum8,CY_sum8,'*','markersize',30)
+plot(CX_sum9,CY_sum9,'*','markersize',30)
+plot(CX_sum10,CY_sum10,'*','markersize',30)
+plot(CX_sum11,CY_sum11,'*','markersize',30)
+%plot(CX_sum4,CY_sum4,'*','markersize',30)
+% plot(CX_sum,CY_sum,'*','markersize',30)
+hold off
+
+center of mass at 60sec
+F_sum99 = 0;
+for Q = 1:1622
+
+    F_sum99 = F_sum99 + F(:,:,Q)
+    CY_sum99 = mean(cy_sum(1:1622),'omitnan')
+    CX_sum99 = mean(cx_sum(1:1622),'omitnan')
+   if rem(m,27)==0
+   
+end
+imshow(F_sum99,[]); hold on
+plot(CX_sum99,CY_sum99,'*','markersize',30)
+hold off
+
